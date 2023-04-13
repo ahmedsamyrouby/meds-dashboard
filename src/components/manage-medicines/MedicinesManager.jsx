@@ -1,5 +1,5 @@
 import MedicinesListItem from "./MedicinesListItem";
-import '../../styles/manage-medicines-style/MedicinesManager.css'
+import "../../styles/manage-medicines-style/MedicinesManager.css";
 
 /**
  * Name
@@ -9,16 +9,27 @@ import '../../styles/manage-medicines-style/MedicinesManager.css'
  * Categories
  */
 
-
-const MedicinesManager = () =>{
-  return(
+const MedicinesManager = () => {
+  return (
     <section className="medicine-list">
-    <MedicinesListItem />
-    <MedicinesListItem />
-    <MedicinesListItem />
-    <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
+      <MedicinesListItem />
     </section>
   );
-}
+};
 
 export default MedicinesManager;

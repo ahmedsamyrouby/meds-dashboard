@@ -1,7 +1,7 @@
 @import "../globals.css";
 
 .medicines-manager-layout{
-  width: 50%;
+  width: 45%;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: -7px 7px 6px rgba(0, 0, 0, 0.25);

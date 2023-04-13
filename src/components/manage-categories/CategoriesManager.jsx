@@ -6,7 +6,7 @@ const CategoriesManager = () => {
   return (
     <section className="categories-section">
       <header className="section-header">
-        <h1 className="header-title">Add Category</h1>
+        <h1 className="header-title">Manage Category</h1>
       </header>
       <section className="main-content-section">
         <CategoriesForm />

@@ -9,7 +9,7 @@ const MedicinesManagerLayout = () => {
     <main className="medicines-manager-layout">
       <header className="medicines-manager-header">
         
-        <h1>Medicines</h1>
+        <h1>Manage Medicines</h1>
 
         <nav className="medicines-manager-nav">
           <NavLink to="view">view all medicines</NavLink>
