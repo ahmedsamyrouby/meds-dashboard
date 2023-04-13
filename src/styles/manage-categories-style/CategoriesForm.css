@@ -1,0 +1,67 @@
+@import "../globals.css";
+
+.add-category-form-container {
+  width: 70%;
+  font-family: var(--body-font);
+  padding: 15px;
+}
+.add-category-form {
+  width: 100%;
+}
+
+[for="category-name"],
+[for="category-description"] {
+  color: white;
+  font-weight: 300;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+#category-name,
+#category-description {
+  min-width: 100%;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+} 
+
+/* #category-name {
+  height: 30px;
+} */
+
+#category-description {
+  resize: none;
+  height: 100px;
+}
+
+.category-name-container,
+.category-description-container {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.add-category-btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.add-category-btn {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--secondary-yellow);
+  font-weight: 500;
+  transition: 0.1s;
+  font-size: 16px;
+}
+
+.add-category-btn:hover{
+  outline: 2px solid var(--secondary-yellow);
+  color: var(--secondary-yellow);
+  background-color: transparent;
+}

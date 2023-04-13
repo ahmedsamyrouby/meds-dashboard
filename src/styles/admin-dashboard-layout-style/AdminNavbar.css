@@ -1,0 +1,43 @@
+@import "../globals.css";
+
+.admin-nav{
+  background-color: var(--primary-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  margin-bottom: 30px;
+}
+
+
+.nav-logo{
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--primary-pale-yellow);
+  font-family: var(--header-font);
+}
+
+.nav-links{
+  display: flex;
+  gap: 5px;
+  width: 30%;
+  justify-content: space-evenly;
+  font-size: 18px;
+}
+
+.admin-nav a{
+  text-decoration: none;
+  color: var(--primary-pale-yellow);
+}
+
+.nav-link > .active{
+  border-bottom: 2px solid var(--primary-pale-yellow);
+}
+
+.user-controls{
+  color: var(--primary-pale-yellow);
+  display: flex;
+  user-select: none;
+  gap: 5px;
+}

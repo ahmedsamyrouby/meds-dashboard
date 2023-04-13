@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
+
+
+:root{
+    /* COLORS */
+
+    /* PRIMARY */
+    --primary-blue: #07A0C3;
+    --primary-dark-grey: #333333;
+    --primary-pale-yellow: #FFF1D0;
+    --primary-yellowish-white: #F9F7F3;
+
+    /* SECONDARY */
+    --secondary-yellow: #F0C808;
+    --secondary-red: #DB5461;
+    --secondary-black: #121619;
+
+    /* TYPOGRAPHY */
+    --header-font: 'Archivo Black', sans-serif;
+    --body-font: 'Roboto', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

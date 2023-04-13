@@ -1,0 +1,39 @@
+@import "../globals.css";
+
+.categories-section {
+  position: relative;
+  width: 45%;
+  background-color: var(--primary-dark-grey);
+  border-radius: 20px;
+  overflow: hidden;
+  gap: 20px;
+  flex-direction: column;
+  box-shadow: -7px 7px 6px rgba(0, 0, 0, 0.25);
+}
+
+.section-header {
+  text-align: center;
+  padding: 7px 0;
+  background-color: var(--primary-blue);
+  color: var(--primary-pale-yellow);
+  width: 100%;
+}
+
+.header-title {
+  font-size: 2.5rem;
+  margin: 0;
+  font-family: var(--header-font);
+  text-transform: uppercase;
+}
+
+.main-content-section{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+hr{
+  width: 85%;
+  background-color: white;
+}
