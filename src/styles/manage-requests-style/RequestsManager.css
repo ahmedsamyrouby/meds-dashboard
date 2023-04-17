@@ -1,0 +1,22 @@
+@import '../globals.css';
+
+.request-manager-container{
+  background-color: var(--primary-dark-grey);
+  width: 45%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: -7px 7px 6px rgba(0, 0, 0, 0.25);
+}
+
+.request-manager-header{
+  background-color: var(--primary-blue);
+  text-align: center;
+  padding: 7px;
+}
+
+.request-manager-header h1{
+  color: var(--primary-pale-yellow);
+  font-family: var(--header-font);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+}

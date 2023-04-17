@@ -15,6 +15,7 @@ import CategoriesManager from "./components/manage-categories/CategoriesManager"
 import MedicinesManager from "./components/manage-medicines/MedicinesManager";
 import RequestsManager from "./components/manage-requests/RequestsManager";
 import MedicinesForm from "./components/manage-medicines/MedicinesForm";
+import Login from "./components/Login";
 
 //layouts
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
@@ -23,7 +24,7 @@ import MedicinesManagerLayout from "./layouts/MedicinesManagerLayout";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<AdminDashboardLayout />}>
-      <Route index element={<AdminDashboard />} />
+      <Route index element={<Login />} />
       <Route path="manage-users" element={<UsersManager />} />
       <Route path="manage-categories" element={<CategoriesManager />} />
       <Route path="manage-medicines" element={<MedicinesManagerLayout />}>

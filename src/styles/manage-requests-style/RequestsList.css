@@ -1,0 +1,10 @@
+@import "../globals.css";
+
+.requests-list{
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 76vh;
+  overflow: auto;
+}
