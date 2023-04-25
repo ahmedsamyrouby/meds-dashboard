@@ -1,0 +1,7 @@
+@import "../../../styles/globals.css";
+
+.login-form-container{
+  margin: 5rem;
+  width: 30%;
+  border-radius: 15px;
+}

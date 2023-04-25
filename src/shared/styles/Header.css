@@ -1,0 +1,9 @@
+@import "../../styles/globals.css";
+
+.nav-logo{
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--primary-pale-yellow);
+  font-family: var(--header-font);
+}
