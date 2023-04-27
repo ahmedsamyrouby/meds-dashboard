@@ -1,29 +1,26 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Accordion, Alert } from "react-bootstrap";
+import { BASE_URL } from "../../App";
 
 const RequestCard = ({ reqId, userName, catName, medName, reqStatus }) => {
-
-  const [status, setStatus] = useState(reqStatus)
+  const [status, setStatus] = useState(reqStatus);
 
   const handleAccept = () => {
-
     setStatus("accept");
 
-    axios.put("http://localhost:3001/respo/" + reqId, {
+    axios.put(BASE_URL + "/respo/" + reqId, {
       statut_req: "accept",
     });
   };
 
   const handleDecline = () => {
-
     setStatus("decline");
 
-    axios.put("http://localhost:3001/respo/" + reqId, {
+    axios.put(BASE_URL + "/respo/" + reqId, {
       statut_req: "decline",
     });
   };
-
 
   return (
     <Accordion.Item
@@ -45,10 +42,18 @@ const RequestCard = ({ reqId, userName, catName, medName, reqStatus }) => {
         <div>
           {!status ? (
             <div>
-              <Button onClick={handleAccept} value="accept" className="btn btn-success me-2 my-2">
+              <Button
+                onClick={handleAccept}
+                value="accept"
+                className="btn btn-success me-2 my-2"
+              >
                 Accept
               </Button>
-              <Button onClick={handleDecline} value="decline" className="btn btn-danger me-2 my-2">
+              <Button
+                onClick={handleDecline}
+                value="decline"
+                className="btn btn-danger me-2 my-2"
+              >
                 Decline
               </Button>
             </div>

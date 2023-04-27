@@ -1,38 +1,43 @@
-import { Container, Accordion, Spinner } from "react-bootstrap";
+import { Container, Accordion, Spinner, Alert } from "react-bootstrap";
 import RequestsCard from "./RequestsCard";
-import "./styles/RequestsManager.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../App";
 
 const RequestsManager = () => {
-  const [requests, setRequests] = useState({
+  const [medRequests, setMedRequests] = useState({
     loading: true,
     reqData: [],
     err: null,
     reload: 0,
   });
 
-  useEffect(() => {
-    setRequests({ ...requests, loading: true });
+  const getMedRequests = () => {
+    setMedRequests({ ...medRequests, loading: true });
     axios
-      .get("http://localhost:3001/request")
+      .get(BASE_URL + "/request")
       .then((res) => {
-        setRequests({
-          ...requests,
-          loading: false,
-          reqData: res.data,
-          err: null,
-        });
+        if (medRequests) {
+          setMedRequests({
+            ...medRequests,
+            loading: false,
+            reqData: res.data,
+            err: null,
+          });
+        }
       })
       .catch((e) => {
-        setRequests({ ...requests, loading: false, err: e });
-        console.log(e);
+        setMedRequests({ ...medRequests, loading: false, err: e.message });
       });
+  };
+
+  useEffect(() => {
+    getMedRequests();
   }, []);
 
   return (
-    <Container className="request-manager-container p-4 bg-dark m-5">
-      {requests.loading && (
+    <Container className="rounded-4 request-manager-container p-4 bg-dark m-5">
+      {medRequests.loading && (
         <div className="text-center">
           <Spinner animation="border" role="status" variant="light">
             <span className="visually-hidden">Loading...</span>
@@ -42,10 +47,10 @@ const RequestsManager = () => {
       <header className="request-manager-header p-4">
         <h1>Manage Requests</h1>
       </header>
-      {!requests.loading && (
+      {(!medRequests.loading && !medRequests.err && (
         <Accordion>
-          {requests.reqData.map((req) => {
-            return(
+          {medRequests.reqData.map((req) => {
+            return (
               <RequestsCard
                 reqId={req.idfreq}
                 userName={req.nameofuser}
@@ -53,9 +58,13 @@ const RequestsManager = () => {
                 medName={req.namenewmeds}
                 reqStatus={req.statut_req}
               />
-            )
+            );
           })}
         </Accordion>
+      )) || (
+        <Alert className="text-center" variant="danger">
+          {medRequests.err}
+        </Alert>
       )}
     </Container>
   );

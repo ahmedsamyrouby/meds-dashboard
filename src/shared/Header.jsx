@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 import "./styles/Header.css";
-import { Navbar } from "react-bootstrap";
+import { Navbar, NavDropdown } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 
 const Header = () => {
-  const Logout = () => {
+  const handleLogout = () => {
     console.log("log out");
   };
   return (
@@ -32,8 +32,10 @@ const Header = () => {
               Requests
             </NavLink>
           </Nav>
-          <Nav className="">
-            <Nav.Link onClick={Logout}>Logout</Nav.Link>
+          <Nav>
+            <NavDropdown title="Admin Name" menuVariant="dark">
+              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Container>
       </Navbar>
