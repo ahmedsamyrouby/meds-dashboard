@@ -52,6 +52,7 @@ const RequestsManager = () => {
           {medRequests.reqData.map((req) => {
             return (
               <RequestsCard
+                key={req.idfreq}
                 reqId={req.idfreq}
                 userName={req.nameofuser}
                 catName={req.namenewca}

@@ -9,6 +9,7 @@ import UsersManager from "./components/manage-users/UsersManager.jsx";
 import MedicinesList from "./pages/medicines-list/MedicinesList.jsx";
 import Admin from "./middleware/Admin.jsx";
 import User from "./middleware/User.jsx";
+import Guest from "./middleware/Guest.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -16,8 +17,13 @@ export const router = createBrowserRouter([
     children: [
       // Guest Middleware
       {
-        path: "/login",
-        element: <Login />,
+        element: <Guest />,
+        children: [
+          {
+            path: "/login",
+            element: <Login />,
+          },
+        ],
       },
       {
         element: <Admin />,
