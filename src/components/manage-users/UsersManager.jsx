@@ -1,9 +1,9 @@
-const UsersManager = () =>{
-  return(
-    <h1>
-      Users Manager
-    </h1>
-  );
-}
+
+
+const UsersManager = () => {
+  return (
+    <h1>UserManager</h1>
+      );
+};
 
 export default UsersManager;

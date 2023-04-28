@@ -5,6 +5,8 @@ import CategoriesManager from "./pages/manage-categories/CategoriesManager";
 import RequestsManager from "./pages/manage-requests/RequestsManager.jsx";
 import MedicinesManager from "./components/manage-medicines/MedicinesManager";
 import NotFound from "./shared/NotFound.jsx";
+import UsersManager from "./components/manage-users/UsersManager.jsx";
+import MedicinesList from "./pages/medicines-list/MedicinesList.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -13,11 +15,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Login />,
+        element: <h1>Home</h1>,
+      },
+      {
+        path: "/login",
+        element: <Login />
       },
       {
         path: "/manage-users",
-        element: <h1>UsersManager</h1>,
+        element: <UsersManager />,
       },
       {
         path: "/manage-categories",
@@ -30,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/manage-requests",
         element: <RequestsManager />,
+      },
+      {
+        path: "/medicines-list",
+        element: <MedicinesList />,
       },
     ],
   },

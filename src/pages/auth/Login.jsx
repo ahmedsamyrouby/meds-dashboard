@@ -3,8 +3,11 @@ import { useState } from "react";
 import "./styles/Login.css";
 import axios from "axios";
 import { BASE_URL } from "../../App";
+import { setAuthUser } from "./../../helper/storage";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -22,19 +25,22 @@ const Login = () => {
       })
       .then((res) => {
         setLogin({ ...login, loading: false, err: false });
+        setAuthUser(res.data);
+        navigate("/");
       })
       .catch((err) => {
-        setLogin({ ...login, loading: false, err: true });
+        setLogin({ ...login, loading: false, err: err.response.data.errors });
       });
   };
 
   return (
     <Container className="login-form-container bg-dark text-light p-4">
-      {login.err && (
-        <Alert className="text-center" variant="danger">
-          Failed to login
-        </Alert>
-      )}
+      {login.err &&
+        login.err.map((error) => (
+          <Alert className="text-center" variant="danger">
+            {error.msg}
+          </Alert>
+        ))}
       <header className="login-header pt-4">
         <h1>Login</h1>
       </header>

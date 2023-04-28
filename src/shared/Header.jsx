@@ -1,12 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./styles/Header.css";
 import { Navbar, NavDropdown } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import { getAuthUser, removeAuthUser } from "../helper/storage";
 
 const Header = () => {
+  const auth = getAuthUser()
+  const navigate = useNavigate()
   const handleLogout = () => {
-    console.log("log out");
+    removeAuthUser();
+    navigate("/login");
   };
   return (
     <header>
@@ -31,9 +35,12 @@ const Header = () => {
             <NavLink className="nav-link" to="manage-requests">
               Requests
             </NavLink>
+            <NavLink className="nav-link" to="medicines-list">
+              medicines list
+            </NavLink>
           </Nav>
           <Nav>
-            <NavDropdown title="Admin Name" menuVariant="dark">
+            <NavDropdown title="Name" menuVariant="dark">
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
