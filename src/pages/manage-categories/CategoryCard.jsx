@@ -16,10 +16,10 @@ const CustomToggle = ({ eventKey }) => {
   );
 
   return (
-    <Button variant="info" className="py-2" onClick={decoratedOnClick}>
+    <Button key={eventKey} variant="info" className="py-2" onClick={decoratedOnClick}>
       {clicked
-        ? ["Hide Details", <RiArrowDropUpFill size={"1.5rem"} />]
-        : ["Show Details", <RiArrowDropDownFill size={"1.5rem"} />]}
+        ? ["Hide Details", <RiArrowDropUpFill key={eventKey} size={"1.5rem"} />]
+        : ["Show Details", <RiArrowDropDownFill key={eventKey} size={"1.5rem"} />]}
     </Button>
   );
 };

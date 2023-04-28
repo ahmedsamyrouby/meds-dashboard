@@ -1,4 +1,4 @@
-import { Container, Accordion, Button, Card } from "react-bootstrap";
+import { Container, Accordion, Button } from "react-bootstrap";
 
 import CategoryCard from './CategoryCard';
 

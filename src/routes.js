@@ -7,39 +7,47 @@ import MedicinesManager from "./components/manage-medicines/MedicinesManager";
 import NotFound from "./shared/NotFound.jsx";
 import UsersManager from "./components/manage-users/UsersManager.jsx";
 import MedicinesList from "./pages/medicines-list/MedicinesList.jsx";
+import Admin from "./middleware/Admin.jsx";
+import User from "./middleware/User.jsx";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <h1>Home</h1>,
-      },
+      // Guest Middleware
       {
         path: "/login",
-        element: <Login />
+        element: <Login />,
       },
       {
-        path: "/manage-users",
-        element: <UsersManager />,
+        element: <Admin />,
+        children: [
+          {
+            path: "/manage-users",
+            element: <UsersManager />,
+          },
+          {
+            path: "/manage-categories",
+            element: <CategoriesManager />,
+          },
+          {
+            path: "/manage-medicines",
+            element: <MedicinesManager />,
+          },
+          {
+            path: "/manage-requests",
+            element: <RequestsManager />,
+          },
+        ],
       },
       {
-        path: "/manage-categories",
-        element: <CategoriesManager />,
-      },
-      {
-        path: "/manage-medicines",
-        element: <MedicinesManager />,
-      },
-      {
-        path: "/manage-requests",
-        element: <RequestsManager />,
-      },
-      {
-        path: "/medicines-list",
-        element: <MedicinesList />,
+        element: <User />,
+        children: [
+          {
+            path: "/medicines-list",
+            element: <MedicinesList />,
+          },
+        ],
       },
     ],
   },

@@ -26,7 +26,7 @@ const Login = () => {
       .then((res) => {
         setLogin({ ...login, loading: false, err: false });
         setAuthUser(res.data);
-        navigate("/");
+        res.data.type ? navigate("/manage-users") : navigate("/medicines-list");
       })
       .catch((err) => {
         setLogin({ ...login, loading: false, err: err.response.data.errors });
