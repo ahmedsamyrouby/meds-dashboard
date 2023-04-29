@@ -44,7 +44,7 @@ const RequestsManager = () => {
           </Spinner>
         </div>
       )}
-      <header className="request-manager-header p-4">
+      <header className="request-manager-header m-4">
         <h1>Manage Requests</h1>
       </header>
       {(!medRequests.loading && !medRequests.err && (

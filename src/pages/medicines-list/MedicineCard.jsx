@@ -1,19 +1,20 @@
 import { Card, Badge, Button } from "react-bootstrap";
 
-const MedicineCard = () => {
+const MedicineCard = ({ medName, medDesc, medPrice, medCat, medId }) => {
   return (
     <div>
-      <Card style={{ width: "20rem" }} className="m-3">
+      <Card style={{ width: "23rem" }} className="m-3">
         <Card.Body>
-          <Card.Title>Medicine Name</Card.Title>
+          <Card.Title>{medName}</Card.Title>
           <Badge pill bg="info">
-            #Category
+            #{medCat}
           </Badge>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+          <Card.Text style={{ height: "6rem" }}>
+            {medDesc.slice(0, 150)}...
           </Card.Text>
-          <Card.Subtitle className="mb-2 text-muted fs-5">EGP 69</Card.Subtitle>
+          <Card.Subtitle className="mb-2 text-muted fs-5">
+            EGP{medPrice ? medPrice : 0}
+          </Card.Subtitle>
           <Button className="me-3">Request</Button>
           <Card.Link className="btn btn-dark" href="#">
             More Details...

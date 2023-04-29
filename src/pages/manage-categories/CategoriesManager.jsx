@@ -6,7 +6,7 @@ import CategoryCard from './CategoryCard';
 const CategoriesManager = () => {
   return (
     <Container className="rounded-4 request-manager-container p-4 bg-dark m-5 d-flex flex-column">
-      <header className="p-4">
+      <header className="m-4">
         <h1>Manage Categories</h1>
       </header>
       
