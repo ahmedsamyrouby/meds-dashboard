@@ -1,7 +1,7 @@
 import MedicineCard from "./MedicineCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, Spinner, Alert } from "react-bootstrap";
+import { Container, Spinner, Alert, Form, Button } from "react-bootstrap";
 import { BASE_URL } from "../../App";
 
 const MedicinesList = () => {
@@ -15,7 +15,7 @@ const MedicinesList = () => {
   const getMedicines = () => {
     setMedicines({ ...medicines, loading: true });
     axios
-      .get(BASE_URL+"/fil")
+      .get(BASE_URL + "/fil")
       .then((res) => {
         setMedicines({
           ...medicines,
@@ -32,7 +32,7 @@ const MedicinesList = () => {
   useEffect(() => {
     getMedicines();
   }, []);
-  
+
   return (
     <Container className="d-flex flex-column bg-dark m-5 p-4 rounded-4">
       {medicines.loading && (
@@ -45,6 +45,15 @@ const MedicinesList = () => {
       <header className="login-header m-4">
         <h1>Medicines List</h1>
       </header>
+
+      <Form>
+        <Form.Group className="mb-3 d-flex justify-content-center" controlId="formBasicEmail">
+          <Form.Control className="w-50 me-3" type="email" placeholder="Search..." />
+          <Button variant="outline-light">Search</Button>
+        </Form.Group>
+
+      </Form>
+
       {(!medicines.loading && !medicines.err && (
         <div className=" p-2 d-flex flex-wrap justify-content-evenly">
           {medicines.medData.map((med) => {
