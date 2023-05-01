@@ -10,6 +10,7 @@ import { RiDeleteBin6Fill, RiEdit2Fill } from "react-icons/ri";
 import { MdInfo } from "react-icons/md";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const MedicineCard = ({ MedId }) => {
   const CustomToggle = ({ eventKey }) => {
@@ -40,9 +41,9 @@ const MedicineCard = ({ MedId }) => {
         <Button variant="danger" className=" py-2 px-2 me-3">
           <RiDeleteBin6Fill size="1.5rem" />
         </Button>
-        <Button variant="secondary" className=" py-2 px-2 me-3">
+        <Link to={""+MedId} className="btn btn-secondary py-2 px-2 me-3">
           <RiEdit2Fill color="white" size="1.5rem" />
-        </Button>
+        </Link>
         <CustomToggle className="me-3" eventKey={MedId}>
           {/*show details button*/}
         </CustomToggle>
