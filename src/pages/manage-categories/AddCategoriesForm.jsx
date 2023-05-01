@@ -1,4 +1,4 @@
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Alert } from "react-bootstrap";
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { getAuthUser } from "../../helper/storage";
@@ -14,26 +14,33 @@ const AddCategoriesForm = () => {
     name: "",
     desc: "",
     id: "",
-    err: null,
+    resMsg: null,
+    success: null,
   });
 
   const addCategory = (e) => {
     e.preventDefault();
-    
-    axios.post(BASE_URL + "/cat", {
-      Name_Category: cat.name,
-      id: cat.id,
-      description_Category: cat.desc,
-    });
 
-    setCat({
-      loading: false,
-      name: "",
-      desc: "",
-      id: "",
-      err: null,
-    });
-    e.target.reset()
+    axios
+      .post(BASE_URL + "/cat", {
+        Name_Category: cat.name,
+        id: cat.id,
+        description_Category: cat.desc,
+      })
+      .then((res) => {
+        setCat({ ...cat, resMsg: res.data.msg });
+      });
+
+    setTimeout(() => {
+      setCat({
+        loading: false,
+        name: "",
+        desc: "",
+        id: "",
+        resMsg: null,
+      });
+      e.target.reset();
+    }, 3000);
   };
 
   return (
@@ -49,11 +56,13 @@ const AddCategoriesForm = () => {
         <h1>Add Category</h1>
       </header>
 
+
       <Form
         className="d-flex flex-column align-items-center"
         onSubmit={addCategory}
-        style={{ padding: "1rem 8rem" }}
-      >
+        style={{ padding: "2rem 10rem" }}
+        >
+        {cat.resMsg && <Alert variant="success" className="w-100 text-center">{cat.resMsg}</Alert>}
         <div className="d-flex w-100 justify-content-center">
           <Form.Group className="my-2 w-75 me-2">
             <Form.Label className="text-light">Enter Category Name:</Form.Label>
@@ -70,6 +79,7 @@ const AddCategoriesForm = () => {
               placeholder="Category ID"
               value={cat.id}
               onChange={(e) => setCat({ ...cat, id: e.target.value })}
+              style={{}}
             />
           </Form.Group>
         </div>
