@@ -1,6 +1,6 @@
 import { Card, Badge, Button } from "react-bootstrap";
 
-const MedicineCard = ({ medName, medDesc, medPrice, medCat, medId }) => {
+const MedicineListCard = ({ medName, medDesc, medPrice, medCat, medId }) => {
   return (
     <div>
       <Card style={{ width: "23rem" }} className="m-3">
@@ -25,4 +25,4 @@ const MedicineCard = ({ medName, medDesc, medPrice, medCat, medId }) => {
   );
 };
 
-export default MedicineCard;
+export default MedicineListCard;

@@ -1,4 +1,4 @@
-import MedicineCard from "./MedicineCard";
+import MedicineListCard from "./MedicineListCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Spinner, Alert, Form, Button } from "react-bootstrap";
@@ -58,7 +58,7 @@ const MedicinesList = () => {
         <div className=" p-2 d-flex flex-wrap justify-content-evenly">
           {medicines.medData.map((med) => {
             return (
-              <MedicineCard
+              <MedicineListCard
                 key={med.id_med}
                 medName={med.Name_meds}
                 medDesc={med.description_meds}

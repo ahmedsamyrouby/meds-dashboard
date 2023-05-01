@@ -3,7 +3,7 @@ import Login from "./pages/auth/Login.jsx";
 import App from "./App.js";
 import CategoriesManager from "./pages/manage-categories/CategoriesManager";
 import RequestsManager from "./pages/manage-requests/RequestsManager.jsx";
-import MedicinesManager from "./components/manage-medicines/MedicinesManager";
+import MedicinesManager from "./pages/manage-medicines/MedicinesManager.jsx";
 import NotFound from "./shared/NotFound.jsx";
 import UsersManager from "./components/manage-users/UsersManager.jsx";
 import MedicinesList from "./pages/medicines-list/MedicinesList.jsx";
