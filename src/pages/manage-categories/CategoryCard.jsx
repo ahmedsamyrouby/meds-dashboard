@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Card, Accordion, Button, useAccordionButton } from "react-bootstrap";
-// import { useAccordionButton } from "react-bootstrap/AccordionButton";
-import { BASE_URL } from './../../App';
 import {
   RiDeleteBin6Fill,
   RiEdit2Fill,
   RiArrowDropDownFill,
   RiArrowDropUpFill,
 } from "react-icons/ri";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
 const CustomToggle = ({ eventKey }) => {
   const [clicked, setClicked] = useState(false);
@@ -39,9 +37,9 @@ const CategoryCard = ({ catName, catDesc, catId, handleDelete }) => {
         <Button variant="danger" className=" py-2 px-2 me-3" onClick={() => handleDelete(catId)}>
           <RiDeleteBin6Fill size="1.5rem" />
         </Button>
-        <Button variant="secondary" className=" py-2 px-2 me-3">
+        <Link to={""+catId} className="btn btn-secondary py-2 px-2 me-3">
           <RiEdit2Fill color="white" size="1.5rem" />
-        </Button>
+        </Link>
         <CustomToggle className="me-3" eventKey={catId}>
           {/*show details button*/}
         </CustomToggle>

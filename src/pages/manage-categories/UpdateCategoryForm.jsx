@@ -1,14 +1,15 @@
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { BiArrowBack } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { getAuthUser } from "../../helper/storage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../App";
 
-const AddCategoriesForm = () => {
-  const auth = getAuthUser();
+const UpdateCategoryForm = () => {
 
+  const auth = getAuthUser();
+  const { id } = useParams();
   const [cat, setCat] = useState({
     loading: false,
     name: "",
@@ -17,13 +18,22 @@ const AddCategoriesForm = () => {
     resMsg: null,
   });
 
-  const addCategory = (e) => {
+  useEffect(() => {
+    axios.get(BASE_URL + "/cat/" + id).then((res) => {
+      setCat({
+        ...cat,
+        name: res.data[0].Name_Category,
+        desc: res.data[0].description_Category,
+        id: res.data[0].id,
+        });
+    });
+  }, []);
+
+  const updateCategory = (e) => {
     e.preventDefault();
-
     setCat({ ...cat, loading: true });
-
     axios
-      .post(BASE_URL + "/cat", {
+      .put(BASE_URL + "/cat/update/" + id, {
         Name_Category: cat.name,
         id: cat.id,
         description_Category: cat.desc,
@@ -34,14 +44,11 @@ const AddCategoriesForm = () => {
 
     setTimeout(() => {
       setCat({
-        loading: false,
-        name: "",
-        desc: "",
-        id: "",
+        ...cat,
         resMsg: null,
       });
-      e.target.reset();
     }, 3000);
+
   };
 
   return (
@@ -54,12 +61,12 @@ const AddCategoriesForm = () => {
       </Link>
 
       <header className="m-4">
-        <h1>Add Category</h1>
+        <h1>Update Category</h1>
       </header>
 
       <Form
         className="d-flex flex-column align-items-center"
-        onSubmit={addCategory}
+        onSubmit={updateCategory}
         style={{ padding: "2rem 10rem" }}
       >
         {cat.resMsg && (
@@ -101,11 +108,11 @@ const AddCategoriesForm = () => {
         </Form.Group>
 
         <Button type="submit" className="my-2">
-          Add Category
+          Update Category
         </Button>
       </Form>
     </Container>
   );
 };
 
-export default AddCategoriesForm;
+export default UpdateCategoryForm;

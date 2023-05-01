@@ -11,12 +11,13 @@ import Admin from "./middleware/Admin.jsx";
 import User from "./middleware/User.jsx";
 import Guest from "./middleware/Guest.jsx";
 import AddCategoriesForm from "./pages/manage-categories/AddCategoriesForm.jsx";
+import UpdateCategoryForm from "./pages/manage-categories/UpdateCategoryForm.jsx";
 
 export const router = createBrowserRouter([
   {
     element: <App />,
     children: [
-      // Guest Middleware
+      // PROTECT GUEST
       {
         element: <Guest />,
         children: [
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      // PROTECT ADMIN
       {
         element: <Admin />,
         children: [
@@ -46,11 +48,16 @@ export const router = createBrowserRouter([
             element: <RequestsManager />,
           },
           {
-            path: "/manage-categories/add-categories",
+            path: "/manage-categories/add",
             element: <AddCategoriesForm/>
+          },
+          {
+            path: "/manage-categories/:id",
+            element: <UpdateCategoryForm/>
           }
         ],
       },
+      // PROTECT USER
       {
         element: <User />,
         children: [

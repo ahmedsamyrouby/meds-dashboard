@@ -77,7 +77,7 @@ const CategoriesManager = () => {
             className="m-auto btn-lg fw-semibold"
             variant="outline-warning"
           >
-            <Link to="add-categories" className="text-light text-decoration-none">Add Category</Link>
+            <Link to="add" className="text-light text-decoration-none">Add Category</Link>
           </Button>
 
           <Accordion className="p-3">
