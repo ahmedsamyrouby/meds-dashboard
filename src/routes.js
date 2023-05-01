@@ -12,6 +12,7 @@ import User from "./middleware/User.jsx";
 import Guest from "./middleware/Guest.jsx";
 import AddCategoriesForm from "./pages/manage-categories/AddCategoriesForm.jsx";
 import UpdateCategoryForm from "./pages/manage-categories/UpdateCategoryForm.jsx";
+import AddMedicineForm from "./pages/manage-medicines/AddMedicineForm.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
           {
             path: "/manage-categories/:id",
             element: <UpdateCategoryForm/>
+          },
+          {
+            path: "/manage-medicines/add",
+            element: <AddMedicineForm/>
           }
         ],
       },
