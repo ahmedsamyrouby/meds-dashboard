@@ -10,6 +10,7 @@ import MedicinesList from "./pages/medicines-list/MedicinesList.jsx";
 import Admin from "./middleware/Admin.jsx";
 import User from "./middleware/User.jsx";
 import Guest from "./middleware/Guest.jsx";
+import AddCategoriesForm from "./pages/manage-categories/AddCategoriesForm.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             path: "/manage-requests",
             element: <RequestsManager />,
           },
+          {
+            path: "/manage-categories/add-categories",
+            element: <AddCategoriesForm/>
+          }
         ],
       },
       {

@@ -5,16 +5,16 @@ import {
   Form,
   Spinner,
   Alert,
-  } from "react-bootstrap";
+} from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 import CategoryCard from "./CategoryCard";
 import { BASE_URL } from "../../App";
 import axios from "axios";
 import { getAuthUser } from "../../helper/storage";
+import { Link } from "react-router-dom";
 
 const CategoriesManager = () => {
-
   const auth = getAuthUser();
 
   const [medCats, setMedCats] = useState({
@@ -44,15 +44,20 @@ const CategoriesManager = () => {
     getMedCats();
   }, [medCats.reload]);
 
-  const handleDelete = (id) =>{
-    axios.delete(BASE_URL + "/cat/delete/" + id, {headers: {
-      token: auth.token
-    }}).then(res => {
-      setMedCats({...medCats, reload: medCats.reload + 1})
-    }).catch(err => {
-      console.log(err);
-    })
-  }
+  const handleDelete = (id) => {
+    axios
+      .delete(BASE_URL + "/cat/delete/" + id, {
+        headers: {
+          token: auth.token,
+        },
+      })
+      .then((res) => {
+        setMedCats({ ...medCats, reload: medCats.reload + 1 });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Container className="rounded-4 request-manager-container p-4 bg-dark m-5 d-flex flex-column">
@@ -72,7 +77,7 @@ const CategoriesManager = () => {
             className="m-auto btn-lg fw-semibold"
             variant="outline-warning"
           >
-            Add Category
+            <Link to="add-categories" className="text-light text-decoration-none">Add Category</Link>
           </Button>
 
           <Accordion className="p-3">
@@ -94,22 +99,6 @@ const CategoriesManager = () => {
           {medCats.err}
         </Alert>
       )}
-
-      {/* <header className="m-4">
-        <h2 className="text-warning ">Add Categories</h2>
-      </header>
-      <Form className="d-flex flex-column align-items-center">
-        <Form.Group className="my-2 w-75">
-          <Form.Label className="text-light">Category Name:</Form.Label>
-          <Form.Control />
-        </Form.Group>
-        <Form.Group className=" my-2 w-75">
-          <Form.Label className="text-light">Category Description:</Form.Label>
-          <Form.Control as="textarea" style={{height: "200px", resize: "none"}}/>
-        </Form.Group>
-
-        <Button className="my-2">Add Category</Button>
-      </Form> */}
     </Container>
   );
 };
