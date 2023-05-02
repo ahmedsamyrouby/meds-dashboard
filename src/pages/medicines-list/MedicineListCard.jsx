@@ -1,4 +1,5 @@
 import { Card, Badge, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const MedicineListCard = ({ medName, medDesc, medPrice, medCat, medId }) => {
   return (
@@ -16,9 +17,9 @@ const MedicineListCard = ({ medName, medDesc, medPrice, medCat, medId }) => {
             EGP{medPrice ? medPrice : 0}
           </Card.Subtitle>
           <Button className="me-3">Request</Button>
-          <Card.Link className="btn btn-dark" href="#">
+          <Link className="btn btn-dark" to={""+medId}>
             More Details...
-          </Card.Link>
+          </Link>
         </Card.Body>
       </Card>
     </div>
