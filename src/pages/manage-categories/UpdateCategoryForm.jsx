@@ -1,13 +1,12 @@
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { BiArrowBack } from "react-icons/bi";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getAuthUser } from "../../helper/storage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../App";
 
 const UpdateCategoryForm = () => {
-
   const auth = getAuthUser();
   const { id } = useParams();
   const [cat, setCat] = useState({
@@ -25,7 +24,7 @@ const UpdateCategoryForm = () => {
         name: res.data[0].Name_Category,
         desc: res.data[0].description_Category,
         id: res.data[0].id,
-        });
+      });
     });
   }, []);
 
@@ -48,7 +47,6 @@ const UpdateCategoryForm = () => {
         resMsg: null,
       });
     }, 3000);
-
   };
 
   return (

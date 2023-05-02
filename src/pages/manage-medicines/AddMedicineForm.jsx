@@ -26,15 +26,7 @@ const AddMedicineForm = () => {
     resMsg: null,
   });
 
-  const getMedCats = () => {
-    axios.get(BASE_URL + "/cat/").then((res) => {
-      setCats({ data: res.data });
-    });
-  };
 
-  useEffect(() => {
-    getMedCats();
-  }, []);
 
   const addMedicine = (e) => {
     e.preventDefault();
