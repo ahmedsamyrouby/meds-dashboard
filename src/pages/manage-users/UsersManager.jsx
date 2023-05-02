@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "./../../App";
+import { getAuthUser } from "../../helper/storage";
 
 const UsersManager = () => {
+
+  const auth = getAuthUser()
+
   const [users, setUsers] = useState({
     loading: true,
     usersData: [],
@@ -34,7 +38,21 @@ const UsersManager = () => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [users.reload]);
+
+  const handleDelete = (id) => {
+    axios.delete(BASE_URL + "/user/delete/" + id, {
+      headers: {
+        token: auth.token,
+      },
+    })
+    .then((res) => {
+      setUsers({ ...users, reload: users.reload + 1 });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 
   return (
     <Container className="rounded-4 request-manager-container p-4 bg-dark m-5 d-flex flex-column">
@@ -67,6 +85,7 @@ const UsersManager = () => {
                 userEmail={user.email}
                 userPhoneNum={user.phone_user}
                 userRole={user.type}
+                handleDelete={handleDelete}
               />);
             })}
           </Accordion>
