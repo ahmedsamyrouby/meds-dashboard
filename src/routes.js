@@ -5,7 +5,7 @@ import CategoriesManager from "./pages/manage-categories/CategoriesManager";
 import RequestsManager from "./pages/manage-requests/RequestsManager.jsx";
 import MedicinesManager from "./pages/manage-medicines/MedicinesManager.jsx";
 import NotFound from "./shared/NotFound.jsx";
-import UsersManager from "./components/manage-users/UsersManager.jsx";
+import UsersManager from "./pages/manage-users/UsersManager.jsx";
 import MedicinesList from "./pages/medicines-list/MedicinesList.jsx";
 import Admin from "./middleware/Admin.jsx";
 import User from "./middleware/User.jsx";
