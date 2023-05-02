@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Card, Accordion, Button, useAccordionButton, Badge } from "react-bootstrap";
+import {
+  Card,
+  Accordion,
+  Button,
+  useAccordionButton,
+  Badge,
+} from "react-bootstrap";
 import { RiDeleteBin6Fill, RiEdit2Fill } from "react-icons/ri";
 import { MdInfo } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -23,12 +29,12 @@ const CustomToggle = ({ eventKey }) => {
   );
 };
 
-const UserCard = ({ userId }) => {
+const UserCard = ({ userId, userName, userEmail, userPhoneNum, userRole }) => {
   return (
     <Card className="mb-3">
       <Card.Header className="d-flex align-items-center">
         <p className="d-inline my-0 me-auto fs-5 align-self-center">
-          User Name
+          {userName}
         </p>
         <Button variant="danger" className=" py-2 px-2 me-3">
           <RiDeleteBin6Fill size="1.5rem" />
@@ -42,23 +48,19 @@ const UserCard = ({ userId }) => {
         <Card.Body>
           <div className="mb-1">
             <span className="fw-bold">User ID: </span>
-            <span>567</span>
+            <span>{userId}</span>
           </div>
           <div className="mb-1">
             <span className="fw-bold">Email Address: </span>
-            <span>admin@gmail.com</span>
+            <span>{userEmail}</span>
           </div>
           <div className="mb-1">
             <span className="fw-bold">Phone Number: </span>
-            <span>36783456789</span>
+            <span>{userPhoneNum}</span>
           </div>
           <div className="mb-1">
             <span className="fw-bold">Role: </span>
-            <Badge>ADMIN</Badge>
-          </div>
-          <div className="mb-1">
-            <span className="fw-bold">Role: </span>
-            <Badge bg="dark">PATIENT</Badge>
+            {userRole ? <Badge>ADMIN</Badge> : <Badge bg="dark">PATIENT</Badge>}
           </div>
         </Card.Body>
       </Accordion.Collapse>
