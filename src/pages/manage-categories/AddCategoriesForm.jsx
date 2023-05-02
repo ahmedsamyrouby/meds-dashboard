@@ -71,6 +71,7 @@ const AddCategoriesForm = () => {
           <Form.Group className="my-2 w-75 me-2">
             <Form.Label className="text-light">Enter Category Name:</Form.Label>
             <Form.Control
+              required
               placeholder="Category Name"
               value={cat.name}
               onChange={(e) => setCat({ ...cat, name: e.target.value })}
@@ -79,6 +80,7 @@ const AddCategoriesForm = () => {
           <Form.Group className="my-2 w-25">
             <Form.Label className="text-light">Enter Category ID:</Form.Label>
             <Form.Control
+              required
               type="number"
               placeholder="Category ID"
               value={cat.id}
@@ -92,6 +94,7 @@ const AddCategoriesForm = () => {
             Enter Category Description:
           </Form.Label>
           <Form.Control
+            required
             placeholder="Category Description"
             as="textarea"
             style={{ height: "200px", resize: "none" }}
