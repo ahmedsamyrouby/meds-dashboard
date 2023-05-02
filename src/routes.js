@@ -6,6 +6,7 @@ import RequestsManager from "./pages/manage-requests/RequestsManager.jsx";
 import MedicinesManager from "./pages/manage-medicines/MedicinesManager.jsx";
 import NotFound from "./shared/NotFound.jsx";
 import UsersManager from "./pages/manage-users/UsersManager.jsx";
+import AddUserForm from "./pages/manage-users/AddUserForm.jsx";
 import MedicinesList from "./pages/medicines-list/MedicinesList.jsx";
 import Admin from "./middleware/Admin.jsx";
 import User from "./middleware/User.jsx";
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
           {
             path: "/manage-users",
             element: <UsersManager />,
+          },
+          {
+            path: "/manage-users/add",
+            element: <AddUserForm/>
           },
           {
             path: "/manage-categories",
