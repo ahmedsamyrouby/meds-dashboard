@@ -7,6 +7,7 @@ import MedicinesManager from "./pages/manage-medicines/MedicinesManager.jsx";
 import NotFound from "./shared/NotFound.jsx";
 import UsersManager from "./pages/manage-users/UsersManager.jsx";
 import AddUserForm from "./pages/manage-users/AddUserForm.jsx";
+import UpdateUserForm from "./pages/manage-users/UpdateUserForm.jsx";
 import MedicinesList from "./pages/medicines-list/MedicinesList.jsx";
 import Admin from "./middleware/Admin.jsx";
 import User from "./middleware/User.jsx";
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "/manage-users/add",
-            element: <AddUserForm/>
+            element: <AddUserForm />,
           },
           {
             path: "/manage-categories",
@@ -56,20 +57,24 @@ export const router = createBrowserRouter([
           },
           {
             path: "/manage-categories/add",
-            element: <AddCategoriesForm/>
+            element: <AddCategoriesForm />,
           },
           {
             path: "/manage-categories/:id",
-            element: <UpdateCategoryForm/>
+            element: <UpdateCategoryForm />,
           },
           {
             path: "/manage-medicines/add",
-            element: <AddMedicineForm/>
+            element: <AddMedicineForm />,
           },
           {
             path: "/manage-medicines/:id",
-            element: <UpdateMedicineForm/>
-          }
+            element: <UpdateMedicineForm />,
+          },
+          {
+            path: "/manage-users/:id",
+            element: <UpdateUserForm />,
+          },
         ],
       },
       // PROTECT USER
