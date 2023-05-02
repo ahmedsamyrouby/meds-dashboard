@@ -4,12 +4,17 @@ import MedicineCard from "./MedicineCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../App";
+import { getAuthUser } from "../../helper/storage";
 
 const ManageMedicines = () => {
+
+  const auth = getAuthUser();
+
   const [meds, setMeds] = useState({
     loading: true,
     medsData: [],
     err: null,
+    reload: 0
   });
 
   const getMeds = () => {
@@ -33,7 +38,21 @@ const ManageMedicines = () => {
 
   useEffect(() => {
     getMeds();
-  }, []);
+  }, [meds.reload]);
+
+  const handleDelete = (id) => {
+    axios.delete(BASE_URL + "/med/delete/" + id, {
+      headers: {
+        token: auth.token,
+      },
+    })
+    .then((res) => {
+      setMeds({ ...meds, reload: meds.reload + 1 });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 
   return (
     <Container className="rounded-4 request-manager-container p-4 bg-dark m-5 d-flex flex-column">
@@ -68,6 +87,7 @@ const ManageMedicines = () => {
                   medId={med.id_med}
                   medCat={med.namefcategory}
                   medPrice={med.price}
+                  handleDelete = {handleDelete}
                 />
               );
             })}

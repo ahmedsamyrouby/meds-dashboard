@@ -12,7 +12,7 @@ import { MdInfo } from "react-icons/md";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const MedicineCard = ({ medId, expDate, medName, medDesc, medCat, medPrice }) => {
+const MedicineCard = ({ medId, expDate, medName, medDesc, medCat, medPrice, handleDelete }) => {
   const CustomToggle = ({ eventKey }) => {
     const [clicked, setClicked] = useState(false);
 
@@ -38,7 +38,7 @@ const MedicineCard = ({ medId, expDate, medName, medDesc, medCat, medPrice }) =>
         <p className="d-inline my-0 me-auto fs-5 align-self-center">
           {medName}
         </p>
-        <Button variant="danger" className=" py-2 px-2 me-3">
+        <Button variant="danger" className=" py-2 px-2 me-3" onClick={() => {handleDelete(medId)}}>
           <RiDeleteBin6Fill size="1.5rem" />
         </Button>
         <Link to={""+medId} className="btn btn-secondary py-2 px-2 me-3">
