@@ -2,12 +2,17 @@ import axios from "axios";
 import { Badge, Container, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "../../App";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
+import { getAuthUser } from "../../helper/storage";
+
+let counter = 200;
 
 const MedicinePage = () => {
   const { id } = useParams();
+
+  const auth = getAuthUser();
 
   const [medData, setMedData] = useState({
     medName: "",
@@ -30,7 +35,24 @@ const MedicinePage = () => {
     });
   };
 
-  getMedInfo();
+  useEffect(() => {
+    getMedInfo();
+  }, []);
+
+
+  const requestMed = () => {
+    counter += 1;
+    axios
+      .post(BASE_URL + "/request", {
+        idfreq: counter,
+        nameofuser: auth.name_user,
+        namenewca: medData.medCategory,
+        namenewmeds: medData.medName,
+      })
+      .then((res) => {
+        console.log(res.data.msg);
+      });
+  };
 
   return (
     <Container className="rounded-4 p-4 bg-dark m-5 d-flex flex-column">
@@ -67,7 +89,7 @@ const MedicinePage = () => {
           <span className="fw-semibold opacity-75">EGP{medData.medPrice}</span>
         </div>
         <div className="w-100 text-center">
-          <Button>Request</Button>
+          <Button onClick={requestMed}>Request</Button>
         </div>
       </Container>
     </Container>

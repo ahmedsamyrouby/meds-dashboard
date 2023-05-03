@@ -47,11 +47,17 @@ const MedicinesList = () => {
       </header>
 
       <Form>
-        <Form.Group className="mb-3 d-flex justify-content-center" controlId="formBasicEmail">
-          <Form.Control className="w-50 me-3" type="email" placeholder="Search..." />
+        <Form.Group
+          className="mb-3 d-flex justify-content-center"
+          controlId="formBasicEmail"
+        >
+          <Form.Control
+            className="w-50 me-3"
+            type="email"
+            placeholder="Search..."
+          />
           <Button variant="outline-light">Search</Button>
         </Form.Group>
-
       </Form>
 
       {(!medicines.loading && !medicines.err && (
