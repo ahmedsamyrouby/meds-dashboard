@@ -15,7 +15,6 @@ Internet Applications University Course Project
 
 ### Manage Users
 
-<<<<<<< HEAD
 ![Manage Users](./screenshots/manage-users.png?raw=true)
 ![Add User](./screenshots/add-user.png?raw=true)
 ![Update User](./screenshots/update-user.png?raw=true)
@@ -40,4 +39,3 @@ Internet Applications University Course Project
 ![Manage Users](./screenshots/manage-users.png)
 ![Add User](./screenshots/add-user.png?raw=true)
 ![Update User](./screenshots/update-user.png?raw=true)
->>>>>>> 0786a413bd3bdcf280f20f6a913ca0d213ff2773
