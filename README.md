@@ -35,7 +35,3 @@ Internet Applications University Course Project
 
 ![Manage Requests](./screenshots/manage-requests.png?raw=true)
 ![Not Answered Request](./screenshots/not-answered-request.png?raw=true)
-=======
-![Manage Users](./screenshots/manage-users.png)
-![Add User](./screenshots/add-user.png?raw=true)
-![Update User](./screenshots/update-user.png?raw=true)
