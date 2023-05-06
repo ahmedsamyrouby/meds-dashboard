@@ -41,9 +41,17 @@ const Header = () => {
 
               {/* Authenticated User */}
               {auth && auth.type === 0 && (
-                <NavLink className="nav-link" to="medicines-list">
-                  Medicines List
-                </NavLink>
+                <>
+                  <NavLink className="nav-link" to="medicines-list">
+                    Medicines List
+                  </NavLink>
+                  <NavLink className="nav-link" to="request-history">
+                    Requests History
+                  </NavLink>
+                  <NavLink className="nav-link" to="request-medicines">
+                    Request Medicines
+                  </NavLink>
+                </>
               )}
             </Nav>
             <Nav>

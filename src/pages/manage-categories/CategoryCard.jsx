@@ -36,10 +36,10 @@ const CategoryCard = ({ catName, catDesc, catId, handleDelete }) => {
           onClick={() => handleDelete(catId)}
         >
           <RiDeleteBin6Fill size="1.5rem" />
-        </Button>
-        <Link to={"" + catId} className="btn btn-secondary py-2 px-2 me-3">
+        </Button>        <Link to={"" + catId} className="btn btn-secondary py-2 px-2 me-3">
           <RiEdit2Fill color="white" size="1.5rem" />
         </Link>
+
         <CustomToggle className="me-3" eventKey={catId}></CustomToggle>
       </Card.Header>
       <Accordion.Collapse eventKey={catId}>

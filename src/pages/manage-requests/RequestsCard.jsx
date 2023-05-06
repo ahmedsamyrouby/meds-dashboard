@@ -2,8 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { Button, Accordion, Alert } from "react-bootstrap";
 import { BASE_URL } from "../../App";
+import { getAuthUser } from "../../helper/storage";
 
 const RequestCard = ({ reqId, userName, catName, medName, reqStatus }) => {
+  const auth = getAuthUser();
+
   const [status, setStatus] = useState(reqStatus);
 
   const handleAccept = () => {
@@ -40,7 +43,7 @@ const RequestCard = ({ reqId, userName, catName, medName, reqStatus }) => {
           {catName}
         </p>
         <div>
-          {!status ? (
+          {!status && auth.type === 1 ? (
             <div>
               <Button
                 onClick={handleAccept}
@@ -57,6 +60,10 @@ const RequestCard = ({ reqId, userName, catName, medName, reqStatus }) => {
                 Decline
               </Button>
             </div>
+          ) : !status && auth.type === 0 ? (
+            <Alert className="my-3" variant="secondary">
+              Request Not Answered Yet
+            </Alert>
           ) : status === "accept" ? (
             <Alert className="my-3" variant="success">
               Request Accepted
