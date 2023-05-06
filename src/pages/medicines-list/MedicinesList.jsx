@@ -1,13 +1,28 @@
 import MedicineListCard from "./MedicineListCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, Spinner, Alert, Form, Button } from "react-bootstrap";
+import {
+  Container,
+  Spinner,
+  Alert,
+  Form,
+  Button,
+  Badge,
+  Nav,
+} from "react-bootstrap";
 import { BASE_URL } from "../../App";
 
 const MedicinesList = () => {
   const [medicines, setMedicines] = useState({
     loading: true,
     medData: [],
+    err: null,
+    reload: 0,
+  });
+
+  const [medCats, setMedCats] = useState({
+    loading: true,
+    catData: [],
     err: null,
     reload: 0,
   });
@@ -29,8 +44,42 @@ const MedicinesList = () => {
       });
   };
 
+  const getMedicinesByCat = (cat) => {
+    setMedicines({ ...medicines, loading: true });
+    axios
+      .get(BASE_URL+ "/fil/category/"+cat)
+      .then((res) => {
+        setMedicines({
+          ...medicines,
+          loading: false,
+          medData: res.data,
+          err: null,
+        });
+      })
+      .catch((e) => {
+        setMedicines({ ...medicines, loading: false, err: e.message });
+      });
+  };
+
+  const getMedCats = () => {
+    axios
+      .get(BASE_URL + "/cat")
+      .then((res) => {
+        setMedCats({
+          ...medCats,
+          loading: false,
+          catData: res.data,
+          err: null,
+        });
+      })
+      .catch((e) => {
+        setMedCats({ ...medCats, loading: false, err: e.message });
+      });
+  };
+
   useEffect(() => {
     getMedicines();
+    getMedCats();
   }, []);
 
   return (
@@ -59,6 +108,40 @@ const MedicinesList = () => {
           <Button variant="outline-light">Search</Button>
         </Form.Group>
       </Form>
+
+      <Container className="filter-cat m-auto p-5 d-flex flex-start">
+        <span className="text-light me-3 btn btn-dark p-2 disabled">
+          Categories:{" "}
+        </span>
+        <Nav variant="pills" defaultActiveKey="-1">
+          <Nav.Item className="m-1">
+            <Nav.Link
+              className="text-light"
+              as={Button}
+              eventKey="-1"
+              onClick={getMedicines}
+            >
+              View All
+            </Nav.Link>
+          </Nav.Item>
+          {medCats.catData.map((cat, i) => {
+            return (
+              <Nav.Item className="m-1" key={i}>
+                <Nav.Link
+                  className="text-light"
+                  as={Button}
+                  eventKey={i}
+                  onClick={() => {
+                    getMedicinesByCat(cat.Name_Category);
+                  }}
+                >
+                  {cat.Name_Category}
+                </Nav.Link>
+              </Nav.Item>
+            );
+          })}
+        </Nav>
+      </Container>
 
       {(!medicines.loading && !medicines.err && (
         <div className=" p-2 d-flex flex-wrap justify-content-evenly">
