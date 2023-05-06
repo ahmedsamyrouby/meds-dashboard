@@ -51,6 +51,8 @@ const MedicinePage = () => {
       })
       .then((res) => {
         console.log(res.data.msg);
+      }).catch(e => {
+        console.log(e)
       });
   };
 

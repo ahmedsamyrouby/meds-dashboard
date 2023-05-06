@@ -69,7 +69,7 @@ const AddMedicineForm = () => {
   };
 
   return (
-    <Container className="rounded-4 request-manager-container p-4 bg-dark m-5 d-flex flex-column">
+    <Container className="rounded-4 p-4 bg-dark m-5 d-flex flex-column">
       <Link to="/manage-medicines">
         <BiArrowBack
           className="text-light bg-warning p-1 rounded-1"

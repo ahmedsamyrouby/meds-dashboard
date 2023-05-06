@@ -38,8 +38,6 @@ const UserReqHistory = () => {
     getMedRequests();
   }, []);
 
-  console.log(medRequests.reqData);
-
   return (
     <Container className="rounded-4 request-manager-container p-4 bg-dark m-5 d-flex flex-column">
       {medRequests.loading && (
