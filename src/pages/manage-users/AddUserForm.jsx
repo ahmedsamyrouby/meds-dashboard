@@ -13,7 +13,6 @@ const AddUserForm = () => {
   const auth = getAuthUser();
 
   const [currentUser, setCurrentUser] = useState({
-    userId: "",
     userName: "",
     userPhoneNum: "",
     userEmail: "",
@@ -43,7 +42,6 @@ const AddUserForm = () => {
       axios
         .post(BASE_URL + "/user", {
           phone_user: currentUser.userPhoneNum,
-          id_user: currentUser.userPhoneNum,
           name_user: currentUser.userName,
           email: currentUser.userEmail,
           password: currentUser.userPassword,
@@ -56,7 +54,6 @@ const AddUserForm = () => {
 
       setTimeout(() => {
         setCurrentUser({
-          userId: "",
           userName: "",
           userPhoneNum: "",
           userEmail: "",
@@ -108,7 +105,7 @@ const AddUserForm = () => {
               }}
             />
           </Form.Group>
-          <Form.Group className="w-25 mb-4 me-3">
+          {/* <Form.Group className="w-25 mb-4 me-3">
             <Form.Label className="text-light">Enter User ID: </Form.Label>
             <Form.Control
               type="number"
@@ -118,7 +115,7 @@ const AddUserForm = () => {
                 setCurrentUser({ ...currentUser, userId: e.target.value });
               }}
             />
-          </Form.Group>
+          </Form.Group> */}
 
           <Form.Group className="w-25 mb-4">
             <Form.Label className="text-light">Role: </Form.Label>

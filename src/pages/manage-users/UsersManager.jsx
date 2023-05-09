@@ -7,8 +7,7 @@ import { BASE_URL } from "./../../App";
 import { getAuthUser } from "../../helper/storage";
 
 const UsersManager = () => {
-
-  const auth = getAuthUser()
+  const auth = getAuthUser();
 
   const [users, setUsers] = useState({
     loading: true,
@@ -41,18 +40,15 @@ const UsersManager = () => {
   }, [users.reload]);
 
   const handleDelete = (id) => {
-    axios.delete(BASE_URL + "/user/delete/" + id, {
-      headers: {
-        token: auth.token,
-      },
-    })
-    .then((res) => {
-      setUsers({ ...users, reload: users.reload + 1 });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+    axios
+      .delete(BASE_URL + "/user/delete/" + id)
+      .then((res) => {
+        setUsers({ ...users, reload: users.reload + 1 });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Container className="rounded-4 request-manager-container p-4 bg-dark m-5 d-flex flex-column">
@@ -78,15 +74,17 @@ const UsersManager = () => {
           </Button>
           <Accordion className="p-3">
             {users.usersData.map((user) => {
-              return(<UserCard
-                key={user.id_user}
-                userId={user.id_user}
-                userName={user.name_user}
-                userEmail={user.email}
-                userPhoneNum={user.phone_user}
-                userRole={user.type}
-                handleDelete={handleDelete}
-              />);
+              return (
+                <UserCard
+                  key={user.id_user}
+                  userId={user.id_user}
+                  userName={user.name_user}
+                  userEmail={user.email}
+                  userPhoneNum={user.phone_user}
+                  userRole={user.type}
+                  handleDelete={handleDelete}
+                />
+              );
             })}
           </Accordion>
         </>

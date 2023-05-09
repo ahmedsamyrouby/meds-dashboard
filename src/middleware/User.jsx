@@ -8,7 +8,7 @@ const User = () => {
       {auth && auth.type === 0 ? (
         <Outlet />
       ) : !auth ? (
-        <Navigate to="login" />
+        <Navigate to="/" />
       ) : (
         <Navigate to="manage-users" />
       )}

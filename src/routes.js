@@ -19,6 +19,7 @@ import UpdateMedicineForm from "./pages/manage-medicines/UpdateMedicineFrom.jsx"
 import MedicinePage from "./pages/medicines-list/MedicinePage.jsx";
 import UserReqHistory from "./pages/user-request-history/UserReqHistory.jsx";
 import RequestMedForm from "./pages/request-medicines/RequestMedForm.jsx";
+import SearchHistory from "./pages/user-search-history/SearchHistory.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
         element: <Guest />,
         children: [
           {
-            path: "/login",
+            path: "/",
             element: <Login />,
           },
         ],
@@ -99,6 +100,10 @@ export const router = createBrowserRouter([
           {
             path: "/request-medicines",
             element: <RequestMedForm />,
+          },
+          {
+            path: "/search-history",
+            element: <SearchHistory />,
           },
         ],
       },

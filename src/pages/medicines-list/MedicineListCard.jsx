@@ -4,16 +4,12 @@ import { getAuthUser } from "../../helper/storage";
 import axios from "axios";
 import { BASE_URL } from "../../App";
 
-let counter = 300;
-
 const MedicineListCard = ({ medName, medDesc, medPrice, medCat, medId }) => {
   const auth = getAuthUser();
 
   const requestMed = () => {
-    counter += 1;
     axios
       .post(BASE_URL + "/request", {
-        idfreq: counter,
         nameofuser: auth.name_user,
         namenewca: medCat,
         namenewmeds: medName,

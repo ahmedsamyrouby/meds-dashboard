@@ -7,12 +7,17 @@ import {
   Alert,
   Form,
   Button,
-  Badge,
   Nav,
 } from "react-bootstrap";
 import { BASE_URL } from "../../App";
+import { getAuthUser } from "../../helper/storage";
+import { useLocation } from "react-router-dom";
 
 const MedicinesList = () => {
+  const auth = getAuthUser();
+
+  let location = useLocation();
+
   const [medicines, setMedicines] = useState({
     loading: true,
     medData: [],
@@ -24,13 +29,19 @@ const MedicinesList = () => {
     loading: true,
     catData: [],
     err: null,
-    reload: 0,
   });
 
-  const getMedicines = () => {
+  const [searchMed, setSearchMed] = useState("");
+
+
+  const getMedicines = (location) => {
     setMedicines({ ...medicines, loading: true });
     axios
-      .get(BASE_URL + "/fil")
+      .get(BASE_URL + "/fil/" + auth.id_user, {
+        params: {
+          search: location || searchMed ,
+        },
+      })
       .then((res) => {
         setMedicines({
           ...medicines,
@@ -40,14 +51,14 @@ const MedicinesList = () => {
         });
       })
       .catch((e) => {
-        setMedicines({ ...medicines, loading: false, err: e.message });
+        setMedicines({ ...medicines, loading: false, err: e.response.data.ms });
       });
   };
 
   const getMedicinesByCat = (cat) => {
     setMedicines({ ...medicines, loading: true });
     axios
-      .get(BASE_URL+ "/fil/category/"+cat)
+      .get(BASE_URL + "/fil/category/" + cat)
       .then((res) => {
         setMedicines({
           ...medicines,
@@ -57,7 +68,7 @@ const MedicinesList = () => {
         });
       })
       .catch((e) => {
-        setMedicines({ ...medicines, loading: false, err: e.message });
+        setMedicines({ ...medicines, loading: false, err: e.response.data.ms });
       });
   };
 
@@ -78,9 +89,15 @@ const MedicinesList = () => {
   };
 
   useEffect(() => {
-    getMedicines();
+    getMedicines(location.state);
     getMedCats();
-  }, []);
+    location = null
+  }, [medicines.reload]);
+
+  const searchMeds = (e) => {
+    e.preventDefault();
+    setMedicines({ ...medicines, reload: medicines.reload + 1 });
+  };
 
   return (
     <Container className="d-flex flex-column bg-dark m-5 p-4 rounded-4">
@@ -95,17 +112,22 @@ const MedicinesList = () => {
         <h1>Medicines List</h1>
       </header>
 
-      <Form>
+      <Form onSubmit={searchMeds}>
         <Form.Group
           className="mb-3 d-flex justify-content-center"
           controlId="formBasicEmail"
         >
           <Form.Control
             className="w-50 me-3"
-            type="email"
             placeholder="Search..."
+            value={searchMed}
+            onChange={(e) => {
+              setSearchMed(e.target.value);
+            }}
           />
-          <Button variant="outline-light">Search</Button>
+          <Button type="submit" variant="outline-light">
+            Search
+          </Button>
         </Form.Group>
       </Form>
 
@@ -158,11 +180,16 @@ const MedicinesList = () => {
             );
           })}
         </div>
-      )) || (
-        <Alert className="text-center" variant="danger">
-          {medicines.err}
-        </Alert>
-      )}
+      )) ||
+        (medicines.err === "Empty!" ? (
+          <Alert className="text-center" variant="secondary">
+            {medicines.err}
+          </Alert>
+        ) : (
+          <Alert className="text-center" variant="danger">
+            {medicines.err}
+          </Alert>
+        ))}
     </Container>
   );
 };

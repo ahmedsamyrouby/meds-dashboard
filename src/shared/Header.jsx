@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import "./styles/Header.css";
 import { Navbar, NavDropdown } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
@@ -7,11 +7,14 @@ import { getAuthUser, removeAuthUser } from "../helper/storage";
 
 const Header = () => {
   const auth = getAuthUser();
+
   const navigate = useNavigate();
+
   const handleLogout = () => {
     removeAuthUser();
-    navigate("/login");
+    navigate("/");
   };
+  
   return (
     <header>
       {auth && (
@@ -20,7 +23,7 @@ const Header = () => {
             <NavLink className="nav-logo navbar-brand" to="manage-users">
               Meds
             </NavLink>
-            <Nav className="">
+            <Nav>
               {/* Authenticated Admin */}
               {auth && auth.type === 1 && (
                 <>
@@ -39,7 +42,7 @@ const Header = () => {
                 </>
               )}
 
-              {/* Authenticated User */}
+              {/* Authenticated Patient */}
               {auth && auth.type === 0 && (
                 <>
                   <NavLink className="nav-link" to="medicines-list">
@@ -50,6 +53,9 @@ const Header = () => {
                   </NavLink>
                   <NavLink className="nav-link" to="request-medicines">
                     Request Medicines
+                  </NavLink>
+                  <NavLink className="nav-link" to="search-history">
+                    Search History
                   </NavLink>
                 </>
               )}

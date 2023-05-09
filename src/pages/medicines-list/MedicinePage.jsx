@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import { getAuthUser } from "../../helper/storage";
 
-let counter = 200;
-
 const MedicinePage = () => {
   const { id } = useParams();
 
@@ -24,6 +22,7 @@ const MedicinePage = () => {
 
   const getMedInfo = () => {
     axios.get(BASE_URL + "/fil/" + id).then((res) => {
+      console.log(res)
       setMedData({
         medName: res.data[0].Name_meds,
         medId: res.data[0].id_med,
@@ -41,10 +40,8 @@ const MedicinePage = () => {
 
 
   const requestMed = () => {
-    counter += 1;
     axios
       .post(BASE_URL + "/request", {
-        idfreq: counter,
         nameofuser: auth.name_user,
         namenewca: medData.medCategory,
         namenewmeds: medData.medName,
@@ -55,6 +52,8 @@ const MedicinePage = () => {
         console.log(e)
       });
   };
+
+  console.log(medData)
 
   return (
     <Container className="rounded-4 p-4 bg-dark m-5 d-flex flex-column">
@@ -77,10 +76,6 @@ const MedicinePage = () => {
         <div className="mb-2">
           <span className="fw-semibold">Expiration Date: </span>
           <span>{medData.medExpDate}</span>
-        </div>
-        <div className="mb-2">
-          <span className="fw-semibold">Medicine ID: </span>
-          <span>{medData.medId}</span>
         </div>
         <div className="mb-2">
           <span className="fw-semibold">Category: </span>

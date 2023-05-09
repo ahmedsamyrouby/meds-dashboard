@@ -14,7 +14,6 @@ const AddMedicineForm = () => {
   });
 
   const [currentMed, setCurrentMed] = useState({
-    medId: "",
     medPrice: "",
     medName: "",
     medDesc: "",
@@ -40,7 +39,6 @@ const AddMedicineForm = () => {
     e.preventDefault();
     axios
       .post(BASE_URL + "/med", {
-        id_med: Number(currentMed.medId),
         price: Number(currentMed.medPrice),
         Name_meds: currentMed.medName,
         description_meds: currentMed.medDesc,
@@ -52,11 +50,12 @@ const AddMedicineForm = () => {
       })
       .then((res) => {
         setCurrentMed({ ...currentMed, resMsg: res.data.msg });
+      }).catch(e => {
+        console.log(e);
       });
     setTimeout(() => {
       setCurrentMed({
         ...currentMed,
-        medId: "",
         medPrice: "",
         medName: "",
         medDesc: "",
@@ -180,7 +179,7 @@ const AddMedicineForm = () => {
             />
           </Form.Group>
           {/* MEDICINE ID */}
-          <Form.Group className="w-25 ">
+          {/* <Form.Group className="w-25 ">
             <Form.Label className="text-light">ID:</Form.Label>
             <Form.Control
               required
@@ -191,7 +190,7 @@ const AddMedicineForm = () => {
                 setCurrentMed({ ...currentMed, medId: Number(e.target.value) })
               }
             />
-          </Form.Group>
+          </Form.Group> */}
         </div>
         <Button type="submit">Add Medicine</Button>
       </Form>

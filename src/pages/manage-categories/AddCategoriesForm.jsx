@@ -7,7 +7,6 @@ import axios from "axios";
 import { BASE_URL } from "../../App";
 
 const AddCategoriesForm = () => {
-  const auth = getAuthUser();
 
   const [cat, setCat] = useState({
     loading: false,

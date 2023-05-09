@@ -13,14 +13,10 @@ const RequestMedForm = () => {
 
   const auth = getAuthUser();
 
-  let counter = 2000;
-
   const sendRequest = (e) => {
     e.preventDefault();
-    counter = counter + 1;
     axios
       .post(BASE_URL + "/request", {
-        idfreq: counter,
         nameofuser: auth.name_user,
         namenewca: reqDetails.medCat,
         namenewmeds: reqDetails.medName,

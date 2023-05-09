@@ -8,7 +8,7 @@ const Admin = () => {
       {auth && auth.type === 1 ? (
         <Outlet />
       ) : !auth ? (
-        <Navigate to="login" />
+        <Navigate to="/" />
       ) : (
         <Navigate to="medicines-list" />
       )}
