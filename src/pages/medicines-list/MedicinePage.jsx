@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Badge, Container, Button } from "react-bootstrap";
+import { Badge, Container, Button, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "../../App";
 import { useState, useEffect } from "react";
@@ -12,6 +12,8 @@ const MedicinePage = () => {
 
   const auth = getAuthUser();
 
+  const [msg, setMsg] = useState();
+
   const [medData, setMedData] = useState({
     medName: "",
     medId: "",
@@ -22,7 +24,7 @@ const MedicinePage = () => {
 
   const getMedInfo = () => {
     axios.get(BASE_URL + "/fil/" + id).then((res) => {
-      console.log(res)
+      console.log(res);
       setMedData({
         medName: res.data[0].Name_meds,
         medId: res.data[0].id_med,
@@ -38,7 +40,6 @@ const MedicinePage = () => {
     getMedInfo();
   }, []);
 
-
   const requestMed = () => {
     axios
       .post(BASE_URL + "/request", {
@@ -47,13 +48,16 @@ const MedicinePage = () => {
         namenewmeds: medData.medName,
       })
       .then((res) => {
-        console.log(res.data.msg);
-      }).catch(e => {
-        console.log(e)
+        setMsg(res.data.msg);
+      })
+      .catch((e) => {
+        setMsg(e.response.data.ms);
       });
-  };
 
-  console.log(medData)
+    setTimeout(() => {
+      setMsg("");
+    }, 3000);
+  };
 
   return (
     <Container className="rounded-4 p-4 bg-dark m-5 d-flex flex-column">
@@ -68,6 +72,12 @@ const MedicinePage = () => {
       </header>
 
       <Container className="rounded-4 bg-light p-4">
+        {msg && (
+          <Alert variant="success" className="w-100 text-center">
+            {msg}
+          </Alert>
+        )}
+
         <div className="mb-2">
           <h4 className="text-dark">Description</h4>
           <p className="m-0">{medData.medDesc}</p>
