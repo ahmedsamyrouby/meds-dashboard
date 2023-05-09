@@ -54,7 +54,7 @@ const UserReqHistory = () => {
 
       {(!medRequests.loading && !medRequests.err && (
         <Accordion>
-          {medRequests.reqData.map((req) => {
+          {medRequests.reqData.slice().reverse().map((req) => {
             return (
               <RequestsCard
                 key={req.idfreq}
