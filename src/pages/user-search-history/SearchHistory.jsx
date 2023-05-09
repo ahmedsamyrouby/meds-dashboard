@@ -3,11 +3,9 @@ import { useState, useEffect } from "react";
 import { BASE_URL } from "../../App";
 import { getAuthUser } from "../../helper/storage";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const SearchHistory = () => {
 
-  const navigate = useNavigate();
   const auth = getAuthUser();
 
   const [history, setHistory] = useState({
@@ -31,9 +29,6 @@ const SearchHistory = () => {
     getSearchHistory();
   }, []);
 
-  const goToSearch = (search) =>{
-    navigate("/medicines-list", {state: search});
-  }
 
   return (
     <Container className="rounded-4 p-4 bg-dark m-5 d-flex flex-column">
@@ -54,7 +49,7 @@ const SearchHistory = () => {
           <tbody>
             {history.historyData.map((val) => {
               return (
-                <tr className="mb-3" key={val.id_search} onClick={() => {goToSearch(val.search)}}>
+                <tr className="mb-3" key={val.id_search}>
                   <td>{val.id_search}</td>
                   <td>{val.search}</td>
                   <td>{val.timefsearch}</td>

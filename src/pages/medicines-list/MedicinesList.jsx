@@ -11,12 +11,9 @@ import {
 } from "react-bootstrap";
 import { BASE_URL } from "../../App";
 import { getAuthUser } from "../../helper/storage";
-import { useLocation } from "react-router-dom";
 
 const MedicinesList = () => {
   const auth = getAuthUser();
-
-  let location = useLocation();
 
   const [medicines, setMedicines] = useState({
     loading: true,
@@ -34,12 +31,12 @@ const MedicinesList = () => {
   const [searchMed, setSearchMed] = useState("");
 
 
-  const getMedicines = (location) => {
+  const getMedicines = () => {
     setMedicines({ ...medicines, loading: true });
     axios
       .get(BASE_URL + "/fil/" + auth.id_user, {
         params: {
-          search: location || searchMed ,
+          search: searchMed ,
         },
       })
       .then((res) => {
@@ -89,9 +86,8 @@ const MedicinesList = () => {
   };
 
   useEffect(() => {
-    getMedicines(location.state);
+    getMedicines();
     getMedCats();
-    location = null
   }, [medicines.reload]);
 
   const searchMeds = (e) => {
@@ -141,7 +137,7 @@ const MedicinesList = () => {
               className="text-light"
               as={Button}
               eventKey="-1"
-              onClick={getMedicines}
+              onClick={() => getMedicines("")}
             >
               View All
             </Nav.Link>
